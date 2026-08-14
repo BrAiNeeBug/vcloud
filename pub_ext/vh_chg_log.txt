@@ -1,0 +1,11 @@
+VHacks is Free-Software do NOT Pay for it ! Use Support-Button for Activation...
+VHacks(Runtime) last update 03.07.2026
+1.6.5.8 released
+VC0N3(Loader and Plugins) last update 05.07.2026
+2.17(03-04) added connection settings import
+VHwid-ToolZ(unpublic Admin-Console for VHLc 2.8c+) last update 01.07.2026
+2.6 added hash validation and colorfully lines
+VCloud_0N3(GUI) last update 05.07.2026
+24 added connection settings tab and import/export function...
+VC0N3_MQTT(MQTT-Plugin) last update 05.07.2026
+-new local ip detection style..
