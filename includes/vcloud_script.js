@@ -2,9 +2,9 @@
 
 // ===== Protocol Switch Domains =====
 // HTTP-Version der Seite (ohne trailing slash)
-const PROTOCOL_HTTP_DOMAIN  = "http://braineebug.github.io/vcloud/vcloud_one.html";
+const PROTOCOL_HTTP_DOMAIN  = "http://braineebug.github.io";
 // HTTPS-Version der Seite (ohne trailing slash)
-const PROTOCOL_HTTPS_DOMAIN = "https://braineebug.github.io/vcloud/vcloud_one.html";
+const PROTOCOL_HTTPS_DOMAIN = "https://braineebug.github.io";
 // =====================================
 
 let client=null;
