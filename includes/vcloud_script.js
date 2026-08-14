@@ -442,7 +442,7 @@ function openMusicPlayer() {
 
     const hint = document.createElement('small');
     hint.className = 'music-player-hint';
-    hint.textContent = '🔁 enables endless radio mode (auto-plays the next track). Dropdown selection stays independent of this.';
+    hint.textContent = 'RADIO IS NOT AVAILABLE ON GITHUB VERSION!';
     box.appendChild(hint);
 
     overlay.appendChild(box);
