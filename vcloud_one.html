@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCloud0N3</title>
+    <link rel="stylesheet" href="vcloud_style.css?v=23.0">
+	<script src="mqtt.min.js?v=5.15.1"></script>
+</head>
+<body>
+<div id="textModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle" style="margin:0; color:#00d2d3;">vCloud0N3...</h2>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <a id="localOpenLink" href="#" style="display:none; color:#00d2d3; text-decoration:none; font-size:14px; font-weight:bold; white-space:nowrap;">
+                    📂 View on PC
+                </a>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+        </div>
+        <pre id="modalBody">Loading...</pre>
+    </div>
+</div>
+<div class="container">
+    <header>
+        <div class="warning"><h3>VC0N3</h3></div>
+		
+    </header>
+	<div id="noConfigInfo" style="display: none;"></div>
+    <div id="mainContent">
+    <div id="log"><span>Initializing system...</span></div>
+	<div id="stickyTransmitBar" class="sticky-transmit-bar">
+		<div class="sticky-bar-content">
+			<button id="autoTransmitBtn" class="btn-auto-transmit btn-full-row">Autosave</button>
+			<div class="sticky-bar-row">
+				<button id="mqttMonitorToggleBtn" class="btn-auto-transmit btn-half-row" onclick="openMqttMonitor()" style="background:linear-gradient(135deg,#00a8a8 0%,#0097a7 100%);">Log</button>
+				<button id="radioQuickIcon" class="btn-auto-transmit btn-half-row" onclick="openMusicPlayer()" style="background:linear-gradient(135deg,#00a8a8 0%,#0097a7 200%);">Radio</button>
+			</div>
+		</div>
+	</div>
+
+    <div class="settings-grid">
+        <div class="card" style="border-top-color: var(--success);">
+            <h4>💾 Profile Management</h4>
+            <div id="infoStatus" class="status-value"></div>
+            <div id="connButtonsRow" style="display:flex; gap:8px; margin-bottom:8px;">
+                <div id="protocolSwitchContainer" style="display:none; flex:1;">
+                    <button id="protocolSwitchBtn" onclick="switchProtocol()" style="width:100%; background:linear-gradient(135deg,#e67e22,#d35400); font-size:12px; padding:8px 10px; letter-spacing:0.3px;">
+                        ⚠️ Connection issues? Click here to switch protocol
+                    </button>
+                </div>
+                <div id="connSetupContainer" style="flex:1;">
+                    <button id="connSetupBtn" onclick="toggleConnSetup()" style="width:100%; height:100%; background:linear-gradient(135deg,#00a8a8,#0097a7); font-size:12px; padding:8px 10px; letter-spacing:0.3px;">
+                        ⚙️ Manual Connection Setup
+                    </button>
+                </div>
+            </div>
+			<div id="infoServerTopicWrap">
+            <div id="infoServer" class="status-value"></div>
+            <div id="infoTopic" class="status-value"></div>
+			</div>
+            <div id="connSetupPanel" style="display:none; margin-bottom:8px;">
+                <small style="display:block; margin-bottom:8px; color:#718093; line-height:1.4;">
+                    Enter plain values only (no "ip=" prefix etc.). Leave a field empty to keep using the URL parameter for it. Save with all fields empty to clear the override completely.
+                </small>
+                <label style="display:block; margin-bottom:2px;">IP Address</label>
+                <div class="profile-row">
+                    <input id="connIp" type="text" placeholder="e.g. 192.168.1.50" style="flex:1;">
+                </div>
+                <label style="display:block; margin-bottom:2px;">WebSocket Port (number only, default 1884)</label>
+                <div class="profile-row">
+                    <input id="connPort" type="text" placeholder="e.g. 1884" style="flex:1;">
+                </div>
+                <label style="display:block; margin-bottom:2px;">Topic</label>
+                <div class="profile-row">
+                    <input id="connTopic" type="text" placeholder="e.g. home/livingroom" style="flex:1;">
+                </div>
+                <label style="display:block; margin-bottom:2px;">Username (optional)</label>
+                <div class="profile-row">
+                    <input id="connUser" type="text" placeholder="only if your broker needs it" style="flex:1;">
+                </div>
+                <label style="display:block; margin-bottom:2px;">Password (optional)</label>
+                <div class="profile-row">
+                    <input id="connPass" type="password" placeholder="only if your broker needs it" style="flex:1;">
+                </div>
+                <div class="profile-row">
+                    <button class="btn-save" onclick="saveConnSetup()" style="flex:1;">💾 Save &amp; Connect</button>
+                    <button onclick="cancelConnSetup()" style="flex:1; background:#7f8c8d;">Cancel</button>
+                </div>
+                <div class="profile-row">
+                    <button onclick="exportConnectionSettings()" style="flex:1; background:#16a085; font-size:12px;">📥 Export Connection JSON</button>
+                    <button onclick="importConnectionSettings()" style="flex:1; background:#3498db; font-size:12px;">📤 Import Connection JSON</button>
+                </div>
+            </div>
+			<br>
+            <div class="profile-row">
+                <select id="profileSelect" onchange="loadProfile()" style="flex: 2;">
+                    <option value="">-- Select Profile --</option>
+                </select>
+                <button class="btn-delete" onclick="deleteProfile()" title="Delete">🗑️</button>
+            </div>
+            <div class="profile-row">
+                <input id="profileName" type="text" placeholder="Profile name..." style="flex: 2;">
+                <button class="btn-save" onclick="saveProfile()">Save</button>
+            </div>
+            <div class="profile-row">
+                <button class="btn-reset" onclick="resetToDefaults()" style="flex: 1;">
+                    🔄 Reset to Defaults
+                </button>
+            </div>
+            <small style="display:block; margin-top:10px; color:#718093; line-height:1.5;">
+                 For Personal ☁️Cloud Profiles use: <strong>📥 Export All</strong><br>
+				 Send the .json to <a href="https://t.me/BrAiNee" target="_blank" rel="noopener noreferrer" style="color:#00d2d3;">@BrAiNee</a> Your profiles will then appear.</small>
+        </div>
+        <div class="card">
+            <h4>⚡ Quick Actions</h4>
+            <div id="swButtons"></div>
+			<small><br>These are soft buttons and only work under certain runtime conditions. For full control, please use the Controls tab and press the keys there.</small>
+        </div>
+        <div class="card">
+            <h4>⚙️ Main Settings</h4>
+            <div id="mainSettings"></div>
+        </div>
+        <div class="card">
+            <h4>⌨️ Controls</h4>
+            <div id="keySettings"></div>
+			<small>Click on key name to "press" the key<br>KeyCombos and MultiKeys are not testable!<br>Be very carefully when pressing "DELETE" Key!</small>
+        </div>
+        <div class="card">
+            <h4>🎯 User Visual Profile</h4>
+            <div class="offset-container">
+                <div id="fovSettings"></div>
+            </div>
+        </div>
+        <div class="card">
+            <h4>🛠️ System Settings</h4>
+            <div id="configInputs"></div>
+        </div>
+    </div>
+    </div>
+    
+<footer class="site-footer">
+    <div class="container">
+        <strong>&copy; 2026 by BrAiNee</strong><br><small>Hard work by claude.ai and chatgpt.com, Music made with suno.com</small><br>
+        <p class="disclaimer-text"><strong>This platform is a private testing environment. All configurations and data are provided "as is" for experimental purposes.</strong></p>
+    </div>
+</footer>
+</div>
+<script src="vcloud_script.js?v=23.15"></script>
+</body>
+</html>
