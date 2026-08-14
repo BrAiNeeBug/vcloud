@@ -2182,7 +2182,7 @@ function showTxtFile(filename){
 
     b.textContent="Loading...";
 
-    const map={ "vh_help_me.txt":"V7","vh_chg_log.txt":"V8" };
+    const map={ "pub_ext/vh_help_me.txt":"V7","pub_ext/vh_chg_log.txt":"V8" };
 
 if(map[filename]){
     localOpenLink.style.display="inline-block";
@@ -2279,8 +2279,8 @@ function generateSWButtons(){
 }
 
 function sendSWPush(swKey){
-    if(swKey === "V7") { showTxtFile('vh_help_me.txt'); return; }
-    if(swKey === "V8") { showTxtFile('vh_chg_log.txt'); return; }
+    if(swKey === "V7") { showTxtFile('pub_ext/vh_help_me.txt'); return; }
+    if(swKey === "V8") { showTxtFile('pub_ext/vh_chg_log.txt'); return; }
     if(!client||!client.connected){ log("⚠️ OFFLINE!"); return; }
     if(!currentTopic) { log("⚠️ No topic configured!"); return; }
     const tempCfg={...configObj};
