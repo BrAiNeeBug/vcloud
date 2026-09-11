@@ -188,7 +188,7 @@ const settingLabels = {
     V44: "Feedback Mode", V46: "HeadSENS", V47: "BodySENS", sense_master: "MasterSENS", V45: "SoundVol",
     V10: "Screensaver Time", V17: "Duration (ms)", V18: "Delay (ms)",
     V19: "Dur.-Tgl (ms)", V20: "Delay-Tgl (ms)", V21: "mPROXY/AP Delay (ms)", V22: "Field of View",
-    V23: "AAI-Ratio (%)", V24: "BrainAssist (Magnet)", V25: "Pre-Delay (ms)", V1: "Runtime On/Off", V2: "Shutdown Loader",
+    V23: "AAI-Ratio (%)", V24: "BrainAssist (Magnet)", V25: "Pre-Delay (rms)", V1: "Runtime On/Off", V2: "Shutdown Loader",
     V3: "Woofer (PC)", V4: "Pixel Test (PC)", V5: "TS3Connect (PC)",
     V6: "Screensaver Test (PC)",
     V7: "HelpMe", V8: "ChangeLog",
