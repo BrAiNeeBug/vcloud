@@ -244,7 +244,7 @@ const settingMeta = {
 
 // ===== Loading Music Radio Player =====
 // Basis-URL anpassen, falls die Tracks woanders liegen
-const MUSIC_BASE_URL = "pub_ext/loading_music/";
+const MUSIC_BASE_URL = "https://bk-net.tk/subs/20260000/pub_ext/loading_music/"; //HC url for using musicplayer on github
 
 // Tracks werden automatisch aus dem V12 Dropdown übernommen
 // (Titel aus settingMeta.labels, Dateiname = Wert.mp3, z.B. 1.mp3, 2.mp3 ...)
