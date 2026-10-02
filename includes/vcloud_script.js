@@ -199,7 +199,7 @@ const settingLabels = {
 
 const settingMeta = {
   V9:{type:"select",values:[0,1,2,3,4],labels:["⚠️OFF⚠️","ON_ReLoad","FLASH_ReLoad","ON_Single","FLASH_Single"]},
-  V12:{type:"select",values:[0,1,2,3,4,5,6,7,8],labels:["OFF","DrEAmInG","TrIbAl","GlItCh","DaRk","BAttLe","SyS","AmbiX","DnBrAiN"]},
+  V12:{type:"select",values:[0,1,2,3,4,5,6,7,8,9],labels:["OFF","DrEAmInG","TrIbAl","GlItCh","DaRk","BAttLe","SyS","AmbiX","DnBrAiN,2DlOaD"]},
   V13:{type:"select",values:[0,1],labels:["OFF","ON"]},
   V15:{type:"select",values:[0,1],labels:["OFF","ON"]},
   V26:{type:"select",values:[0,1],labels:["OFF","ON"]},
