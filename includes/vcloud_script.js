@@ -223,7 +223,7 @@ const settingMeta = {
   V21:{type:"range",min:0,max:1000,step:1},
   V22:{type:"range",min:1,max:20,step:1},
   V23:{type:"range",min:0,max:100,step:1},
-  V24:{type:"select",values:[0,1,2],labels:["OFF","SOFT","HARD (use low timings)"]},
+  V24:{type:"select",values:[0,1,2,3,4],labels:["OFF","SOFT","HARD","SOFT+PreDelay","HARD+PreDelay"]},
   V25:{type:"range",min:0,max:100,step:1},
   V39:{type:"text"},
   V40:{type:"text"},
